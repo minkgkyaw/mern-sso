@@ -43,4 +43,30 @@ router.get(
   })
 );
 
+router.get(
+  "/github",
+  passport.authenticate("github", { scope: ["user:email"] })
+);
+
+router.get(
+  "/github/callback",
+  passport.authenticate("github", {
+    successRedirect: CLIENT_URL,
+    failureRedirect: "/login/failed",
+  })
+);
+
+// router.get(
+//   "/facebook",
+//   passport.authenticate("facebook", { scope: ["user:email"] })
+// );
+
+// router.get(
+//   "/facebook/callback",
+//   passport.authenticate("facebook", {
+//     successRedirect: CLIENT_URL,
+//     failureRedirect: "/login/failed",
+//   })
+// );
+
 export default router;
